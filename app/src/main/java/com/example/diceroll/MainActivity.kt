@@ -46,7 +46,10 @@ class MainActivity : AppCompatActivity() {
         diceImage.setImageResource(result);
 //        Update the image description
         diceImage.contentDescription = result.toString();
-        updateHeading("Roll It!");
+        updateHeading("Rolled.");
+        Timer("SettingUp", false).schedule(500) {
+            updateHeading("Roll It!");
+        }
     }
     /**
     Roll Dice function
