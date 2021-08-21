@@ -3,7 +3,11 @@ package com.example.diceroll
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import java.util.*
+import kotlin.concurrent.schedule
+
 
 /**
 Dice Class
@@ -16,13 +20,16 @@ class Dice(private val numberOfSides: Int) {
 
 class MainActivity : AppCompatActivity() {
     /**
-    Roll Dice function
+     Updating Heading
      **/
-    private fun rollDice() {
-        // Toast message
-//        val toast = Toast.makeText(this, "Dice Rolled!", Toast.LENGTH_SHORT)
-//        toast.show()
-        // Create a Dice Obj
+    private fun updateHeading(text:String) {
+        var textField:TextView = findViewById(R.id.textView);
+        textField.text = text
+    }
+    /**
+     Roll await
+     **/
+    private fun awaitedRoll() {
         var diceObj = Dice(6);
         var dataToShow = diceObj.roll();
         var diceImage: ImageView = findViewById(R.id.imageView);
@@ -39,11 +46,27 @@ class MainActivity : AppCompatActivity() {
         diceImage.setImageResource(result);
 //        Update the image description
         diceImage.contentDescription = result.toString();
+        updateHeading("Roll It!");
+    }
+    /**
+    Roll Dice function
+     **/
+    private fun rollDice() {
+        // Toast message
+//        val toast = Toast.makeText(this, "Dice Rolled!", Toast.LENGTH_SHORT)
+//        toast.show()
+        // Create a Dice Obj
+        updateHeading("Rolling...!");
+        Timer("SettingUp", false).schedule(500) {
+            awaitedRoll()
+        }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        updateHeading("Roll It!");
         val rollButton: Button = findViewById(R.id.button)
         rollButton.setOnClickListener {
             rollDice()
