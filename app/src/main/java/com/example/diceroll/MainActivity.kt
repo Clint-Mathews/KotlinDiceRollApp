@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         diceImage.contentDescription = result.toString();
         updateHeading("Rolled.");
         Timer("SettingUp", false).schedule(500) {
-            updateHeading("Roll It!");
+            updateHeading("Roll Again?");
         }
     }
     /**
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        updateHeading("Roll It!");
+        updateHeading("Roll?");
         val rollButton: Button = findViewById(R.id.button)
         rollButton.setOnClickListener {
             rollDice()
