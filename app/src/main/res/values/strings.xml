@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">DiceRoll</string>
     <string name="roll">Roll</string>
+    <string name="roll_twice">Roll Twice</string>
 </resources>
